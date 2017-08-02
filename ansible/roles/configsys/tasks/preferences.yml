@@ -1,0 +1,54 @@
+---
+- name: Sys Config | System Preferences | General
+  shell: "{{ item }}"
+  with_items:
+   - "{{ osx_config_sys.system_preferences.line_1.general }}"
+  sudo: true
+
+- name: Sys Config | System Preferences | Desktop & Screen Saver
+  shell: "{{ item }}"
+  with_items:
+   - "{{ osx_config_sys.system_preferences.line_1.desktop_screen_saver }}"
+  sudo: true
+
+- name: Sys Config | System Preferences | Dock
+  shell: "{{ item }}"
+  with_items:
+   - "{{ osx_config_sys.system_preferences.line_1.dock }}"
+  sudo: true
+
+- name: Sys Config | System Preferences | Security & Privacy
+  shell: "{{ item }}"
+  with_items:
+   - "{{ osx_config_sys.system_preferences.line_1.security_privacy }}"
+  sudo: true
+
+- name: Sys Config | System Preferences | Spotlight
+  shell: "{{ item }}"
+  with_items:
+   - "{{ osx_config_sys.system_preferences.line_1.spotlight }}"
+  sudo: true
+
+- name: Sys Config | System Preferences | Energy Saver
+  shell: "{{ item }}"
+  with_items:
+   - "{{ osx_config_sys.system_preferences.line_2.energy_saver }}"
+  sudo: true
+
+- name: Sys Config | System Preferences | Keyboard
+  shell: "{{ item }}"
+  with_items:
+   - "{{ osx_config_sys.system_preferences.line_2.keyboard }}"
+  sudo: true
+
+- name: Sys Config | System Preferences | Mouse
+  shell: "{{ item }}"
+  with_items:
+   - "{{ osx_config_sys.system_preferences.line_2.mouse }}"
+  sudo: true
+
+- name: Sys Config | System Preferences | App Store
+  shell: "{{ item }}"
+  with_items:
+   - "{{ osx_config_sys.system_preferences.line_4.app_store }}"
+  sudo: true

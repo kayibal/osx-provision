@@ -1,0 +1,6 @@
+---
+- name: Sys Config | System
+  shell: "{{ item }}"
+  with_items:
+   - "{{ osx_config_sys.system }}"
+  sudo: true

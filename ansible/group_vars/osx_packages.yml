@@ -1,0 +1,41 @@
+---
+osx_packages:
+
+  common:
+
+    taps:
+      - homebrew/python
+      - homebrew/science
+      - homebrew/versions
+      - wallix/awless
+
+    packages:
+      - cask
+      - python3
+      - pyenv-virtualenv
+      - awless
+      - htop
+      - vim
+      - tree
+      - hostess
+      #- gcc --without-multilib
+
+    casks:
+      - google-chrome
+      - skype
+      - iterm2
+      - pycharm
+      - spotify
+      - docker
+      - atom
+      - openoffice
+
+
+  python_packages:
+    - awscli
+    - jupyter
+    - notebook
+    - virtualenvwrapper
+    - thefuck
+    - versioneer
+    - cookiecutter

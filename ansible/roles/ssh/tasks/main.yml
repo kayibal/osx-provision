@@ -1,0 +1,12 @@
+---
+- name: SSH | Create .ssh directory
+  file: >
+    path=~/.ssh
+    state=directory
+    mode=0740
+
+- name: SSH | Copy config file to .ssh
+  copy: >
+    src=config
+    dest=~/.ssh/config
+    mode=0600

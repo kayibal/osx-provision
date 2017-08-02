@@ -1,0 +1,17 @@
+.idea
+.DS_Store
+.thumbs
+thumbs.db
+
+# Java crapola
+classes/
+build/
+out/
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+coverage

@@ -1,0 +1,9 @@
+[core]
+	excludesfile = ~/.gitignore
+	editor = vim
+	autocrlf = input
+[user]
+	name = kayibal
+	email = alan.f.hoeng@gmail.com
+[push]
+	default = simple

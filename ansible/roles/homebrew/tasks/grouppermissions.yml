@@ -1,0 +1,34 @@
+---
+# http://blog.strug.de/2012/06/my-homebrew-multi-user-setup/
+- name: Homebrew | Create brew group
+  group:
+    name: brew
+    state: present
+    system: no
+  sudo: true
+
+- name: Homebrew | Use group permissions for homebrew /usr/local
+  file: >
+    path=/usr/local
+    group=brew
+    mode="g+w"
+  sudo: true
+
+- name: Homebrew | Use group permissions for homebrew /Users/{{username_on_the_host.stdout}}/Library/Caches/Homebrew/
+  file: >
+    path=/Users/{{username_on_the_host.stdout}}/Library/Caches/Homebrew/
+    group=brew
+    mode="g+w"
+  sudo: true
+
+# - name: Homebrew | Use group permissions for homebrew /opt/homebrew-cask/Caskroom
+#   file: >
+#     path=/opt/homebrew-cask/Caskroom
+#     owner=root
+#     group=admin
+#     mode="g+w"
+#     recurse=yes
+#   sudo: true
+
+# sudo chown -R root:admin /opt/homebrew-cask/Caskroom/yasu
+# sudo chmod -R g+w /opt/homebrew-cask/Caskroom/yasu

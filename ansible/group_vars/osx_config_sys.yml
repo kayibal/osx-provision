@@ -1,0 +1,187 @@
+---
+osx_config_sys:
+
+  system:
+    # Expand save panel by default
+    - defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+    - defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+    # Disable the “Are you sure you want to open this application?” dialog
+    - defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+    # Increase sound quality for Bluetooth headphones/headsets
+    - defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
+    # Save screenshots to the desktop
+    - defaults write com.apple.screencapture location -string "${HOME}/Desktop/Screenshots"
+
+    # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+    - defaults write com.apple.screencapture type -string "png"
+
+    # Disable shadow in screenshots
+    - defaults write com.apple.screencapture disable-shadow -bool true
+
+  system_preferences:
+
+    line_1:
+
+      general:
+        # set recent items to none
+        - defaults write NSGlobalDomain NSRecentDocumentsLimit 0
+
+        # always show scrollbars
+        # Possible values: `WhenScrolling`, `Automatic` and `Always`
+        - defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+
+        # Enable subpixel font rendering on non-Apple LCDs
+        - defaults write NSGlobalDomain AppleFontSmoothing -int 2
+
+        #- defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+
+      desktop_screen_saver:
+
+        # Require password immediately after sleep or screen saver begins
+        - defaults write com.apple.screensaver askForPassword -int 1
+        - defaults write com.apple.screensaver askForPasswordDelay -int 5
+
+      dock:
+
+        # Enable highlight hover effect for the grid view of a stack (Dock)
+        - defaults write com.apple.dock mouse-over-hilite-stack -bool true
+
+        # Set the icon size of Dock items to 36 pixels
+        - defaults write com.apple.dock tilesize -int 36
+
+        # Change minimize/maximize window effect
+        - defaults write com.apple.dock mineffect -string "scale"
+
+        # Minimize windows into their application’s icon
+        #- defaults write com.apple.dock minimize-to-application -bool true
+
+        # Enable spring loading for all Dock items
+        #- defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
+
+        # Show indicator lights for open applications in the Dock
+        - defaults write com.apple.dock show-process-indicators -bool true
+
+        # Wipe all (default) app icons from the Dock
+        # This is only really useful when setting up a new Mac, or if you don’t use the Dock to launch apps.
+        #- defaults write com.apple.dock persistent-apps -array
+
+        # Show only open applications in the Dock
+        #- defaults write com.apple.dock static-only -bool true
+
+        # Don’t animate opening applications from the Dock
+        #- defaults write com.apple.dock launchanim -bool false
+
+        # Remove the auto-hiding Dock delay
+        #- defaults write com.apple.dock autohide-delay -float 0
+
+        # Remove the animation when hiding/showing the Dock
+        #- defaults write com.apple.dock autohide-time-modifier -float 0
+
+        # Automatically hide and show the Dock
+        - defaults write com.apple.dock autohide -bool true
+
+        # Make Dock icons of hidden applications translucent
+        #- defaults write com.apple.dock showhidden -bool true
+
+        # Reset Launchpad, but keep the desktop wallpaper intact
+        # seems to be broken
+        #- find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
+
+
+      security_privacy:
+
+        # disable automatic login
+        - defaults write /Library/Preferences/com.apple.loginwindow DisableFDEAutoLogin -bool YES
+
+        # allow apps to be downloaded from anywhere
+        - defaults write /var/db/SystemPolicy-prefs enabled no
+        - spctl --master-disable
+
+        # automatically allow signed software to receive incoming connections
+        - defaults write /Library/Preferences/com.apple.alf allowsignedenabled -bool true
+
+        # enable stealth mode
+        - defaults write /Library/Preferences/com.apple.alf stealthenabled -bool true
+
+        # turn on firewall
+        # - defaults write /Library/Preferences/com.apple.alf globalstate -int 1
+        # - launchctl unload /System/Library/LaunchAgents/com.apple.alf.useragent.plist
+        # - launchctl unload /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+        # - launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+        # - launchctl load /System/Library/LaunchAgents/com.apple.alf.useragent.plist
+
+      spotlight:
+        # Disable Spotlight indexing for any volume that gets mounted and has not yet
+        # been indexed before.
+        # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
+        - defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+
+        # Load new settings before rebuilding the index
+        - killall mds > /dev/null 2>&1
+
+        # Make sure indexing is enabled for the main volume
+        - mdutil -i on / > /dev/null
+
+        # Rebuild the index from scratch
+        - mdutil -E / > /dev/null
+
+    line_2:
+
+      energy_saver:
+
+        # set display to sleep after 30 minutes
+        - defaults write /Library/Preferences/SystemConfiguration/com.apple.PowerManagement "Custom Profile.AC Power.Display Sleep Timer" -int 30
+
+        # put hard disks to sleep when possible
+        - defaults write /Library/Preferences/SystemConfiguration/com.apple.PowerManagement "Custom Profile.AC Power.Disk Sleep Timer" -int 30
+
+      keyboard:
+
+        # Set a shorter Delay until key repeat
+        - defaults write NSGlobalDomain InitialKeyRepeat -int 12
+
+        # Set a blazingly fast keyboard repeat rate
+        - defaults write NSGlobalDomain KeyRepeat -int 0
+
+        # Enable full keyboard access for all controls
+        # (e.g. enable Tab in modal dialogs)
+        - defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+      mouse:
+
+        # Natual Scrolling
+        - defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
+
+        # Enable Tap to Click
+        - sudo defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+        - sudo defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+        # Enable three finger drag
+        - defaults -currentHost write NSGlobalDomain com.apple.trackpad.threeFingerSwipeGesture -int 1
+
+    line_4:
+
+      app_store:
+
+        - osascript -e "tell application \"System Preferences\" to quit"
+
+        # Check for software updates daily, not just once per week
+        - defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+        # automatically download updates in the background
+        - defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool TRUE
+        - defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist AutomaticDownload -bool YES
+
+        # automatically install app updates
+        - defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist ConfigDataInstall -bool YES
+
+        # disable automatically installing OS X updates
+        - defaults write /Library/Preferences/com.apple.commerce AutoUpdateRestartRequired -bool FALSE
+
+        # install system data files and security updates
+        - defaults write /Library/Preferences/com.apple.SoftwareUpdate.plist CriticalUpdateInstall -bool YES
+
+        - osascript -e "tell application \"System Preferences\" to quit"
