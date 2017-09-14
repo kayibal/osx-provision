@@ -29,7 +29,7 @@ if [[ ! -x /usr/local/bin/git ]]; then
     brew install git
 fi
 
-git clone https://github.com/kayibal/provision.git $SRC_DIRECTORY
+git clone https://github.com/kayibal/osx-provision.git $SRC_DIRECTORY
 
 # Download and install python
 if [[ ! -x /usr/local/bin/python ]]; then
