@@ -2,7 +2,7 @@
 
 set -e
 
-SRC_DIRECTORY="/Users/kayibal/Downloads/provision-ansible-mac-master"
+SRC_DIRECTORY="/Users/kayibal/code/osx-provision"
 ANSIBLE_DIRECTORY="$SRC_DIRECTORY/ansible"
 
 # Make the code directory
@@ -29,7 +29,8 @@ if [[ ! -x /usr/local/bin/git ]]; then
     brew install git
 fi
 
-#git clone https://github.com/kayibal/provision.git $SRC_DIRECTORY
+mkdir ~/code
+git clone https://github.com/kayibal/provision.git $SRC_DIRECTORY
 
 # Download and install python
 if [[ ! -x /usr/local/bin/python ]]; then

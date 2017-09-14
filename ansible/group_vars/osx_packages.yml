@@ -18,7 +18,7 @@ osx_packages:
       - vim
       - tree
       - hostess
-      #- gcc --without-multilib
+      - gcc --without-multilib
 
     casks:
       - google-chrome
