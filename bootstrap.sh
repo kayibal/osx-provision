@@ -29,7 +29,6 @@ if [[ ! -x /usr/local/bin/git ]]; then
     brew install git
 fi
 
-mkdir ~/code
 git clone https://github.com/kayibal/provision.git $SRC_DIRECTORY
 
 # Download and install python
