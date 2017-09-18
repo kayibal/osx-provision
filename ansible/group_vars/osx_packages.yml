@@ -18,7 +18,9 @@ osx_packages:
       - vim
       - tree
       - hostess
-      - gcc --without-multilib
+      - gcc
+      - tmux
+      - juju
 
     casks:
       - google-chrome
@@ -29,6 +31,8 @@ osx_packages:
       - docker
       - atom
       - openoffice
+      - virtualbox
+      - vagrant
 
 
   python_packages:
