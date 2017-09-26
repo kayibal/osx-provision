@@ -21,6 +21,10 @@ osx_packages:
       - gcc
       - tmux
       - juju
+      - watch
+      - tty-clock
+      - kubectl
+      - sshuttle
 
     casks:
       - google-chrome
